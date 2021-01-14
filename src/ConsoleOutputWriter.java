@@ -1,11 +1,11 @@
-public class ConsoleOutputWriter {
-
-    public void Print(){
-
-    }
-
-    public void PrintLine(){
+public class ConsoleOutputWriter implements IOutputWriter {
+    @Override
+    public void Print(String text) {
 
     }
 
+    @Override
+    public void PrintLine(String text) {
+
+    }
 }

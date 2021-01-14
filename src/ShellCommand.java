@@ -4,6 +4,6 @@ public abstract class ShellCommand {
     public void setParameters(List<String> parameters) {
         this.parameters = parameters;
     }
-    public void Execute(){
+    public void Execute(IOutputWriter iOutputWriter){
     }
 }

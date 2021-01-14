@@ -4,11 +4,11 @@ public class Invoker {
 
     }
 
-    public void Invocer(){
+    public void Invoker(IOutputWriter iOutputWriter){
 
     }
 
-    public void AddCommand(){
+    public void AddCommand(ShellCommand shellCommand){
 
     }
 

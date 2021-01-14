@@ -1,5 +1,5 @@
 public interface IOutputWriter {
 
-    public void Print();
-    public void PrintLine();
+    public void Print(String text);
+    public void PrintLine(String text);
 }
