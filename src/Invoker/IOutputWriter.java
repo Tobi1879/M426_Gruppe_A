@@ -1,3 +1,5 @@
+package Invoker;
+
 public interface IOutputWriter {
 
     public void Print(String text);

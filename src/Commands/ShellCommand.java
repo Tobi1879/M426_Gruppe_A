@@ -1,3 +1,7 @@
+package Commands;
+
+import Invoker.IOutputWriter;
+
 import java.util.List;
 public abstract class ShellCommand {
     protected List<String> parameters;
