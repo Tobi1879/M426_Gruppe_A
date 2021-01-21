@@ -15,6 +15,8 @@ public class Console {
 
     public void Start() {
         while(isRunning){
+
+
             System.out.printf("Geben Sie einen Command ein: ");
             ProcessInput();
         }
@@ -30,7 +32,8 @@ public class Console {
             invoker.ExecuteCommand(input);
         } catch (InputMismatchException e){
             scanner.nextLine();
-            System.out.println("Ungültige Eingabe!");
+            System.out.println("Ungültige Eingabe!\n");
+
         }
     }
 
