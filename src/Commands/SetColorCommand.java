@@ -17,7 +17,7 @@ public void Execute(IOutputWriter iOutputWriter){
 
         }
     }
-    System.out.println((char)27 + "[31m" + "Ungueltige Eingabe! \n");
+
 
     };
 }
