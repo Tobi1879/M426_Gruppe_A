@@ -18,7 +18,7 @@ public class Invoker {
                 // PArameters
             }
         } else {
-            consoleOutputWriter.PrintLine("Ungültige Eingabe");
+            consoleOutputWriter.PrintLine("Ungültige Eingabe\n");
         }
     }
 

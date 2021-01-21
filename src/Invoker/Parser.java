@@ -1,6 +1,7 @@
 package Invoker;
 
 import Commands.ExitCommand;
+import Commands.SetColorCommand;
 import Commands.ShellCommand;
 import Commands.VerCommand;
 import Factory.CommandFactory;
@@ -22,6 +23,10 @@ public class Parser {
             case "ver": {
                 VerCommand verCommand = new VerCommand();
                 return verCommand;
+            }
+            case "color": {
+                SetColorCommand setColorCommand = new SetColorCommand();
+                return setColorCommand;
             }
         }
         return null;
