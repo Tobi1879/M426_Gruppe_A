@@ -7,15 +7,17 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Console {
+    Boolean isRunning = true;
 
     public void Console() {
-        // todo Lehrer fragen, wegen Command Eingabe und Verarbeitung
-        System.out.printf("Geben Sie einen Command ein: ");
-        ProcessInput();
+
     }
 
-    public void Start(){
-        Console();
+    public void Start() {
+        while(isRunning){
+            System.out.printf("Geben Sie einen Command ein: ");
+            ProcessInput();
+        }
     }
 
     private void ProcessInput(){
@@ -24,8 +26,8 @@ public class Console {
         Invoker invoker = new Invoker();
 
         try {
-            String command = scanner.nextLine();
-
+            String input = scanner.nextLine();
+            invoker.ExecuteCommand(input);
         } catch (InputMismatchException e){
             scanner.nextLine();
             System.out.println("Ungültige Eingabe!");
