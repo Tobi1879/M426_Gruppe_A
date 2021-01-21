@@ -1,4 +1,6 @@
 package FileSystem;
 
-public class Drive {
+public class Drive implements IDrive{
+
+    public List<FileSystemItem> FileSystemItems;
 }
