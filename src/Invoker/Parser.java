@@ -6,11 +6,22 @@ import Commands.ShellCommand;
 import Commands.VerCommand;
 import Factory.CommandFactory;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class Parser {
 
     public List<String> ParseCommandParameters(String string){
+        switch(string){
+            case "color": {
+                // Parameter zb 02 auslesen
+                /*String parameters = string.replace("color ");
+                String[] split = string.split("");
+                split.
+                ArrayList<String> parameterList = Arrays.asList(split);
+                return split;*/
+            }
+        }
         return null;
     }
     public ShellCommand ParseCommand(String command){
