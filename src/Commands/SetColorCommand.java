@@ -3,6 +3,7 @@ package Commands;
 import Invoker.IOutputWriter;
 
 import javax.swing.plaf.ColorChooserUI;
+import java.util.logging.ConsoleHandler;
 
 public class SetColorCommand extends ShellCommand {
 
@@ -10,6 +11,7 @@ public class SetColorCommand extends ShellCommand {
 
         System.out.println("Geben Sie die gewünschte Farbe ein:");
         SetColorCommand setColorCommand = new SetColorCommand();
+
 
 
     }
