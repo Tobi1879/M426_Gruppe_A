@@ -28,97 +28,109 @@ public class SetColorCommand extends ShellCommand {
 
     public void Execute(IOutputWriter iOutputWriter) {
         String parameters = this.parameters.get(0);
-        String arrayParameters[] = parameters.split("");
-        int backgroundColor;
-        int fontColor;
-        if (arrayParameters.length == 2) {
-            try {
-                backgroundColor = Integer.parseInt(arrayParameters[0]);
-                fontColor = Integer.parseInt(arrayParameters[1]);
-            } catch (Exception e){
-                iOutputWriter.PrintLine("Falscheingabe!");
-                return;
-            }
-            String ansiBackgroundColor = "";
-            String ansiFontColor = "";
-            switch (backgroundColor) {
-                case 0: {
-                    ansiBackgroundColor = ANSI_BLACK_BACKGROUND;
-                    break;
-                }
-                case 1: {
-                    ansiBackgroundColor = ANSI_BLUE_BACKGROUND;
-                    break;
-                }
-                case 2: {
-                    ansiBackgroundColor = ANSI_GREEN_BACKGROUND;
-                    break;
-                }
-                case 3: {
-                    ansiBackgroundColor = ANSI_CYAN_BACKGROUND;
-                    break;
-                }
-                case 4: {
-                    ansiBackgroundColor = ANSI_RED_BACKGROUND;
-                    break;
-                }
-                case 5: {
-                    ansiBackgroundColor = ANSI_PURPLE_BACKGROUND;
-                    break;
-                }
-                case 6: {
-                    ansiBackgroundColor = ANSI_YELLOW_BACKGROUND;
-                    break;
-                }
-                case 7: {
-                    ansiBackgroundColor = ANSI_WHITE_BACKGROUND;
-                    break;
-                }
-                default: {
-                    iOutputWriter.PrintLine("Falscher Parameter!");
+        if (!parameters.equals("-help")) {
+            String arrayParameters[] = parameters.split("");
+            int backgroundColor;
+            int fontColor;
+            if (arrayParameters.length == 2) {
+                try {
+                    backgroundColor = Integer.parseInt(arrayParameters[0]);
+                    fontColor = Integer.parseInt(arrayParameters[1]);
+                } catch (Exception e) {
+                    iOutputWriter.PrintLine("Falscheingabe!");
                     return;
                 }
+                String ansiBackgroundColor = "";
+                String ansiFontColor = "";
+                switch (backgroundColor) {
+                    case 0: {
+                        ansiBackgroundColor = ANSI_BLACK_BACKGROUND;
+                        break;
+                    }
+                    case 1: {
+                        ansiBackgroundColor = ANSI_BLUE_BACKGROUND;
+                        break;
+                    }
+                    case 2: {
+                        ansiBackgroundColor = ANSI_GREEN_BACKGROUND;
+                        break;
+                    }
+                    case 3: {
+                        ansiBackgroundColor = ANSI_CYAN_BACKGROUND;
+                        break;
+                    }
+                    case 4: {
+                        ansiBackgroundColor = ANSI_RED_BACKGROUND;
+                        break;
+                    }
+                    case 5: {
+                        ansiBackgroundColor = ANSI_PURPLE_BACKGROUND;
+                        break;
+                    }
+                    case 6: {
+                        ansiBackgroundColor = ANSI_YELLOW_BACKGROUND;
+                        break;
+                    }
+                    case 7: {
+                        ansiBackgroundColor = ANSI_WHITE_BACKGROUND;
+                        break;
+                    }
+                    default: {
+                        iOutputWriter.PrintLine("Falscher Parameter!");
+                        return;
+                    }
+                }
+                switch (fontColor) {
+                    case 0: {
+                        ansiFontColor = ANSI_BLACK;
+                        break;
+                    }
+                    case 1: {
+                        ansiFontColor = ANSI_BLUE;
+                        break;
+                    }
+                    case 2: {
+                        ansiFontColor = ANSI_GREEN;
+                        break;
+                    }
+                    case 3: {
+                        ansiFontColor = ANSI_CYAN;
+                        break;
+                    }
+                    case 4: {
+                        ansiFontColor = ANSI_RED;
+                        break;
+                    }
+                    case 5: {
+                        ansiFontColor = ANSI_PURPLE;
+                        break;
+                    }
+                    case 6: {
+                        ansiFontColor = ANSI_YELLOW;
+                        break;
+                    }
+                    case 7: {
+                        ansiFontColor = ANSI_WHITE;
+                        break;
+                    }
+                    default: {
+                        iOutputWriter.PrintLine("Falscher Parameter!");
+                        return;
+                    }
+                }
+                System.out.print(ansiBackgroundColor + ansiFontColor + "Test");
             }
-            switch (fontColor) {
-                case 0: {
-                    ansiFontColor = ANSI_BLACK;
-                    break;
-                }
-                case 1: {
-                    ansiFontColor = ANSI_BLUE;
-                    break;
-                }
-                case 2: {
-                    ansiFontColor = ANSI_GREEN;
-                    break;
-                }
-                case 3: {
-                    ansiFontColor = ANSI_CYAN;
-                    break;
-                }
-                case 4: {
-                    ansiFontColor = ANSI_RED;
-                    break;
-                }
-                case 5: {
-                    ansiFontColor = ANSI_PURPLE;
-                    break;
-                }
-                case 6: {
-                    ansiFontColor = ANSI_YELLOW;
-                    break;
-                }
-                case 7: {
-                    ansiFontColor = ANSI_WHITE;
-                    break;
-                }
-                default: {
-                    iOutputWriter.PrintLine("Falscher Parameter!");
-                    return;
-                }
-            }
-            System.out.print(ansiBackgroundColor + ansiFontColor + "Test");
-
+        } else {
+            iOutputWriter.PrintLine("Geben Sie wie folgt die Parameter ein\n" +
+                    "color <Farbe Hintergrund><Farbe Text>\n" +
+                    "z.B. color 12\n" +
+                    "\n" +
+                    "Wie folgt sind die Farben:\n" +
+                    "0 = Schwarz\t4 = Rot\n" +
+                    "1 = Blau\t5 = Violett\n" +
+                    "2 = Grün\t6 = Gelb\n" +
+                    "3 = Cyan\t7 = Weiss\n" +
+                    "8 = Grau");
         }
     }
 }
