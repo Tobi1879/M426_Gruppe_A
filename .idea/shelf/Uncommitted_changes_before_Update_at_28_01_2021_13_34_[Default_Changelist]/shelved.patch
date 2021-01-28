@@ -1,0 +1,18 @@
+Index: src/FileSystem/File.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package FileSystem;\r\n\r\npublic class File extends FileSystemItem{\r\n\r\n    private String content;\r\n\r\n    public String getSize(){\r\n        return size;\r\n    }\r\n    public String getContent(){\r\n        return content;\r\n    }\r\n    public void setContent(String newContent){\r\n        this.content = newContent;\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/FileSystem/File.java b/src/FileSystem/File.java
+--- a/src/FileSystem/File.java	(revision c50b5bb2495821b1c2927794240cc9770f53875b)
++++ b/src/FileSystem/File.java	(date 1611836840932)
+@@ -6,6 +6,7 @@
+ 
+     public String getSize(){
+         return size;
++        return content.length();
+     }
+     public String getContent(){
+         return content;
