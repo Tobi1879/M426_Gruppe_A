@@ -11,9 +11,6 @@ public class SetColorCommand extends ShellCommand {
 
         System.out.println("Geben Sie die gewünschte Farbe ein:");
         SetColorCommand setColorCommand = new SetColorCommand();
-
-
-
     }
 }
 
