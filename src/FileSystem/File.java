@@ -4,7 +4,8 @@ public class File extends FileSystemItem{
 
     private String content;
 
-    public String getSize(){
+    public int getSize(){
+        int size = 0;
         return size;
     }
     public String getContent(){
