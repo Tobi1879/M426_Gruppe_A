@@ -1,9 +1,6 @@
 package Invoker;
 
-import Commands.ExitCommand;
-import Commands.SetColorCommand;
-import Commands.ShellCommand;
-import Commands.VerCommand;
+import Commands.*;
 import Factory.CommandFactory;
 
 import java.util.Arrays;
@@ -38,6 +35,10 @@ public class Parser {
             case "color": {
                 SetColorCommand setColorCommand = new SetColorCommand();
                 return setColorCommand;
+            }
+            case "cls": {
+                ClsCommand clsCommand = new ClsCommand();
+                return clsCommand;
             }
         }
         return null;

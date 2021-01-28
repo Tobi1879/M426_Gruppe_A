@@ -18,7 +18,8 @@ public class Invoker {
                 // PArameters
             }
         } else {
-            consoleOutputWriter.PrintLine("Ungültige Eingabe\n");
+            consoleOutputWriter.PrintLine("\u001B[31mUngültige Eingabe\n\u001B[0m");
+
         }
     }
 
