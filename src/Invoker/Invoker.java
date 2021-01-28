@@ -19,7 +19,11 @@ public class Invoker {
                 shellCommand.setParameters(parameters);
                 shellCommand.Execute(consoleOutputWriter);
             }
-        } else {
+        } else if (shellCommand != null) {
+            shellCommand.Execute(consoleOutputWriter);
+
+        }
+        else {
             consoleOutputWriter.PrintLine("\u001B[31mUngültige Eingabe\n\u001B[0m");
 
         }
