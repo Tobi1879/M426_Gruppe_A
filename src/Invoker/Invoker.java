@@ -9,16 +9,19 @@ public class Invoker {
     public void ExecuteCommand(String command){
         IOutputWriter consoleOutputWriter = new ConsoleOutputWriter();
         Parser parser = new Parser();
-        ShellCommand shellCommand = parser.ParseCommand(command);
-        if (shellCommand != null){
+        String [] arrayOfParameters = command.split(" ");
+        ShellCommand shellCommand = parser.ParseCommand(arrayOfParameters[0]);
+        if (shellCommand != null && arrayOfParameters.length > 1){
             List<String> parameters = parser.ParseCommandParameters(command);
             if (parameters == null){
-                shellCommand.Execute(consoleOutputWriter);
+                consoleOutputWriter.PrintLine("Falscheingabe!");
             } else {
-                // PArameters
+                shellCommand.setParameters(parameters);
+                shellCommand.Execute(consoleOutputWriter);
             }
         } else {
-            consoleOutputWriter.PrintLine("Ungültige Eingabe\n");
+            consoleOutputWriter.PrintLine("\u001B[31mUngültige Eingabe\n\u001B[0m");
+
         }
     }
 
