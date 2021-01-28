@@ -28,6 +28,9 @@ public class Parser {
                 ArrayList<String> parameterList = Arrays.asList(split);
                 return split;*/
             }
+            case "mkdir":{
+
+            }
         }
         return null;
     }
@@ -49,6 +52,10 @@ public class Parser {
             case "cls": {
                 ClsCommand clsCommand = new ClsCommand();
                 return clsCommand;
+            }
+            case "mkdir": {
+                MkDirCommand mkDirCommand = new MkDirCommand();
+                return mkDirCommand;
             }
         }
         return null;
