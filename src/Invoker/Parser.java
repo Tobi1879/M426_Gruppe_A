@@ -29,7 +29,15 @@ public class Parser {
                 return split;*/
             }
             case "mkdir":{
-
+                String nameParameter = "";
+                if (!(arrayOfParameters.length > 2)) {
+                    nameParameter = arrayOfParameters[1];
+                    List<String> parameterList = new ArrayList<>();
+                    parameterList.add(nameParameter);
+                    return parameterList;
+                } else {
+                    new ConsoleOutputWriter().PrintLine("Falscheingabe!");
+                }
             }
         }
         return null;
