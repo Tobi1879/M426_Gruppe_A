@@ -10,6 +10,6 @@ public class ConsoleOutputWriter implements IOutputWriter {
 
     @Override
     public void PrintLine(String text) {
-        System.out.printf(text);
+        System.out.println(text);
     }
 }
