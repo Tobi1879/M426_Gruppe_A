@@ -1,6 +1,5 @@
 package Console;
 
-import Commands.SetColorCommand;
 import Invoker.Parser;
 import Invoker.Invoker;
 
@@ -18,7 +17,7 @@ public class Console {
         while(isRunning){
 
 
-            System.out.println("Geben Sie einen Command ein: ");
+            System.out.printf("\nGeben Sie einen Command ein: ");
             ProcessInput();
         }
     }
