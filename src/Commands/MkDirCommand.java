@@ -12,7 +12,7 @@ public class MkDirCommand extends ShellCommand {
         String name = this.parameters.get(0);
         String path = Drive.getPrompt();
         Directory directory = new Directory();
-
+        //test test test test test test test
         directory.setName(name);
         directory.setPath(path);
 
