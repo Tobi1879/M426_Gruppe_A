@@ -1,11 +1,14 @@
 package Invoker;
 
+import FileSystem.Directory;
+import FileSystem.Drive;
 import Invoker.IOutputWriter;
 
 public class ConsoleOutputWriter implements IOutputWriter {
+
     @Override
     public void Print(String text) {
-        System.out.print( + text);
+        System.out.print(Drive.prompt + text);
     }
 
     @Override
