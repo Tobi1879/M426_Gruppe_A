@@ -1,5 +1,6 @@
 package Commands;
 
+import Invoker.ConsoleOutputWriter;
 import Invoker.IOutputWriter;
 
 import javax.swing.plaf.ColorChooserUI;
@@ -37,7 +38,8 @@ public class SetColorCommand extends ShellCommand {
                         backgroundColor = Integer.parseInt(arrayParameters[0]);
                         fontColor = Integer.parseInt(arrayParameters[1]);
                     } catch (Exception e) {
-                        iOutputWriter.PrintLine("Falscheingabe!");
+                        //iOutputWriter.PrintLine("Falscheingabe!");
+                        iOutputWriter.PrintLine("\u001B[31mUngültige Eingabe\n\u001B[0m");
                         return;
                     }
                     String ansiBackgroundColor = "";
@@ -118,7 +120,7 @@ public class SetColorCommand extends ShellCommand {
                             return;
                         }
                     }
-                    System.out.print(ansiBackgroundColor + ansiFontColor + "Test");
+                    System.out.print(ansiBackgroundColor + ansiFontColor );
                 }
             } else {
                 iOutputWriter.PrintLine("Geben Sie wie folgt die Parameter ein\n" +
@@ -133,7 +135,8 @@ public class SetColorCommand extends ShellCommand {
                         "8 = Grau");
             }
         } else {
-            iOutputWriter.PrintLine("Ungültige Eingabe!");
+            iOutputWriter.PrintLine("\u001B[31mUngültige Eingabe\n\u001B[0m");
+            //iOutputWriter.PrintLine("Ungültige Eingabe!");
         }
     }
 }
