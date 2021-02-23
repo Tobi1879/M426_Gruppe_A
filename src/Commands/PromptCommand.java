@@ -1,5 +1,6 @@
 package Commands;
 
+import FileSystem.Directory;
 import Invoker.IOutputWriter;
 
 public class PromptCommand extends ShellCommand{
@@ -7,6 +8,7 @@ public class PromptCommand extends ShellCommand{
 
     @Override
     public void Execute(IOutputWriter iOutputWriter){
-        System.out.print("");
+        String currentDirectory = "";
+        System.out.print(currentDirectory);
     }
 }
