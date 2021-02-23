@@ -11,7 +11,7 @@ public class Parser {
 
     public List<String> ParseCommandParameters(String command){
         String [] arrayOfParameters = command.split(" ");
-        switch(arrayOfParameters[0]){
+        switch(arrayOfParameters[0].toLowerCase()){
             case "color": {
                 String colorParameter = "";
                 if (!(arrayOfParameters.length > 2)) {
@@ -22,11 +22,6 @@ public class Parser {
                 } else {
                     new ConsoleOutputWriter().PrintLine("Falscheingabe!");
                 }
-                /*String parameters = string.replace("color ");
-                String[] split = string.split("");
-                split.
-                ArrayList<String> parameterList = Arrays.asList(split);
-                return split;*/
             }
             case "mkdir":{
                 String nameParameter = "";
@@ -42,30 +37,12 @@ public class Parser {
         }
         return null;
     }
-    public ShellCommand ParseCommand(String command){
+    public Boolean ParseCommand(String command){
         String commandLowerCase = command.toLowerCase();
-        switch(commandLowerCase){
-            case "exit": {
-                ExitCommand exitCommand = new ExitCommand();
-                return exitCommand;
-            }
-            case "ver": {
-                VerCommand verCommand = new VerCommand();
-                return verCommand;
-            }
-            case "color": {
-                SetColorCommand setColorCommand = new SetColorCommand();
-                return setColorCommand;
-            }
-            case "cls": {
-                ClsCommand clsCommand = new ClsCommand();
-                return clsCommand;
-            }
-            case "mkdir": {
-                MkDirCommand mkDirCommand = new MkDirCommand();
-                return mkDirCommand;
-            }
+        CommandFactory commandFactory = new CommandFactory();
+        if(commandFactory.GetCommands().contains(commandLowerCase)) {
+            return true;
         }
-        return null;
+        return false;
     }
 }
