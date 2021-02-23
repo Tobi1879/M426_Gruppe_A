@@ -6,7 +6,15 @@ public abstract class Drive {
     public static int size = 0;
     public static Directory rootDirectory = null;
     public static Directory currentDirecotry = null;
-    public static String prompt = null;
+    private static String prompt = null;
+
+    public static String getPrompt() {
+        return prompt;
+    }
+
+    public static void setPrompt(String prompt) {
+        Drive.prompt = prompt;
+    }
 
     public static void setCurrentDirectory(Directory directory) {
 
