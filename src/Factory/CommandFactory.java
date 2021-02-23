@@ -1,6 +1,7 @@
 package Factory;
 
 import Commands.*;
+import Console.Console;
 import Invoker.ConsoleOutputWriter;
 import Invoker.IOutputWriter;
 
@@ -27,24 +28,30 @@ public class CommandFactory {
             case "exit": {
                 ExitCommand exitCommand = new ExitCommand();
                 exitCommand.Execute(consoleOutputwriter);
+                break;
             }
             case "ver": {
                 VerCommand verCommand = new VerCommand();
                 verCommand.Execute(consoleOutputwriter);
+                break;
             }
             case "color": {
                 SetColorCommand setColorCommand = new SetColorCommand();
                 setColorCommand.setParameters(parameters);
                 setColorCommand.Execute(consoleOutputwriter);
+                break;
             }
             case "cls": {
                 ClsCommand clsCommand = new ClsCommand();
                 clsCommand.Execute(consoleOutputwriter);
+
+                break;
             }
             case "mkdir": {
                 MkDirCommand mkDirCommand = new MkDirCommand();
                 mkDirCommand.setParameters(parameters);
                 mkDirCommand.Execute(consoleOutputwriter);
+                break;
             }
         }
     }

@@ -15,7 +15,8 @@ public class Invoker {
         if (isCommand == true && arrayOfParameters.length > 1){
             List<String> parameters = parser.ParseCommandParameters(command);
             if (parameters == null){
-                consoleOutputWriter.PrintLine("Falscheingabe!");
+                //consoleOutputWriter.PrintLine("Falscheingabe!");
+                consoleOutputWriter.PrintLine("\u001B[31mUngültige Eingabe\n\u001B[0m");
             } else {
                 CommandFactory commandFactory = new CommandFactory();
                 commandFactory.CreateCommand(arrayOfParameters[0], parameters);

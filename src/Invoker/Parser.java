@@ -20,7 +20,8 @@ public class Parser {
                     parameterList.add(colorParameter);
                     return parameterList;
                 } else {
-                    new ConsoleOutputWriter().PrintLine("Falscheingabe!");
+                    //new ConsoleOutputWriter().PrintLine("Falscheingabe!");
+                    new ConsoleOutputWriter().PrintLine("\u001B[31mUngültige Eingabe\n\u001B[0m");
                 }
             }
             case "mkdir":{
@@ -31,7 +32,8 @@ public class Parser {
                     parameterList.add(nameParameter);
                     return parameterList;
                 } else {
-                    new ConsoleOutputWriter().PrintLine("Falscheingabe!");
+                    //new ConsoleOutputWriter().PrintLine("Falscheingabe!");
+                    new ConsoleOutputWriter().PrintLine("\u001B[31mUngültige Eingabe\n\u001B[0m");
                 }
             }
         }
