@@ -1,5 +1,7 @@
 package Console;
 
+import FileSystem.Directory;
+import FileSystem.Drive;
 import Invoker.Parser;
 import Invoker.Invoker;
 
@@ -15,9 +17,12 @@ public class Console {
 
     public void Start() {
         while(isRunning){
+            Directory directory = new Directory();
+            Drive drive = new Drive();
+            String drivePath;
+            String directoryPath = directory.getPath();
 
-
-            System.out.printf("\nGeben Sie einen Command ein: ");
+            System.out.printf(drivePath + directoryPath);
             ProcessInput();
         }
     }
