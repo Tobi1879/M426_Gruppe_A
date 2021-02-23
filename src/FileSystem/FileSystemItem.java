@@ -2,8 +2,8 @@ package FileSystem;
 
 public abstract class FileSystemItem {
     private Directory parentDirectory;
-    public String name;
-    public String path;
+    private String name;
+    private String path;
 
     public Directory getParentDirectory() {
         return parentDirectory;
