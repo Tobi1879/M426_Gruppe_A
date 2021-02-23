@@ -1,23 +1,22 @@
 package FileSystem;
 
-import java.util.List;
+public abstract class Drive {
+    public static String name = null;
+    public static String label = null;
+    public static int size = 0;
+    public static Directory rootDirectory = null;
+    public static Directory currentDirecotry = null;
+    public static String prompt = null;
 
-public class Drive extends IDrive {
-
-    public List<FileSystemItem> FileSystemItems;
-
-    @Override
-    public  void setCurrentDirectory(Directory directory) {
-   System.out.println("");
-    }
-
-    @Override
-    public  void restore() {
+    public static void setCurrentDirectory(Directory directory) {
 
     }
 
-    @Override
-    public  void Save() {
+    public static void restore() {
+
+    }
+
+    public static void Save() {
 
     }
 }

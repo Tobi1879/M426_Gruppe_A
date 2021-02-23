@@ -5,7 +5,7 @@ import Invoker.IOutputWriter;
 public class ConsoleOutputWriter implements IOutputWriter {
     @Override
     public void Print(String text) {
-        System.out.print(text);
+        System.out.print( + text);
     }
 
     @Override
