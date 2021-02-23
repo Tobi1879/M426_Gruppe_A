@@ -1,7 +1,10 @@
 package Console;
 
+import FileSystem.Directory;
+import FileSystem.Drive;
 import Invoker.Parser;
 import Invoker.Invoker;
+import Invoker.ConsoleOutputWriter;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -15,9 +18,8 @@ public class Console {
 
     public void Start() {
         while(isRunning){
-
-
-            System.out.printf("\nGeben Sie einen Command ein: ");
+            ConsoleOutputWriter consoleOutputWriter = new ConsoleOutputWriter();
+            consoleOutputWriter.Print("");
             ProcessInput();
         }
     }
