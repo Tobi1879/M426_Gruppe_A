@@ -12,7 +12,8 @@ public class MkDirCommand extends ShellCommand {
         String path = "idk";
         Directory directory = new Directory();
 
-        directory.name = name;
-        directory.path = path;
+        directory.setName(name);
+        directory.setPath(path);
+
     }
 }
