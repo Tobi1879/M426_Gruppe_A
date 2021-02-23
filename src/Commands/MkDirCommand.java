@@ -15,6 +15,6 @@ public class MkDirCommand extends ShellCommand {
         //test test test test test test test
         directory.setName(name);
         directory.setPath(path);
-
+        directory.setParentDirectory(Drive.getCurrentDirecotry());
     }
 }

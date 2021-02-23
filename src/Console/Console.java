@@ -17,6 +17,13 @@ public class Console {
     }
 
     public void Start() {
+        Directory rootDirectory = new Directory();
+        rootDirectory.setName("M426:");
+        rootDirectory.setPath("");
+        rootDirectory.setParentDirectory(null);
+        Drive.setRootDirectory(rootDirectory);
+        Drive.setPrompt(Drive.getRootDirectory().getName() + "/");
+        Drive.setCurrentDirecotry(rootDirectory);
         while(isRunning){
             ConsoleOutputWriter consoleOutputWriter = new ConsoleOutputWriter();
             consoleOutputWriter.Print("");

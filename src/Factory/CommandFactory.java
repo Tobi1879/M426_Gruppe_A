@@ -10,20 +10,21 @@ import java.util.Collection;
 import java.util.List;
 
 public class CommandFactory {
-    public List GetCommands(){
+    public List GetCommands() {
         List<String> commandList = new ArrayList();
         commandList.add("cls");
         commandList.add("exit");
         commandList.add("mkdir");
         commandList.add("color");
         commandList.add("ver");
+        commandList.add("create");
         return commandList;
     }
 
-    public void CreateCommand(String command, List parameters){
+    public void CreateCommand(String command, List parameters) {
         IOutputWriter consoleOutputwriter = new ConsoleOutputWriter();
         String commandLowerCase = command.toLowerCase();
-        switch(commandLowerCase){
+        switch (commandLowerCase) {
             case "exit": {
                 ExitCommand exitCommand = new ExitCommand();
                 exitCommand.Execute(consoleOutputwriter);
@@ -49,6 +50,10 @@ public class CommandFactory {
                 MkDirCommand mkDirCommand = new MkDirCommand();
                 mkDirCommand.setParameters(parameters);
                 mkDirCommand.Execute(consoleOutputwriter);
+                break;
+            }
+            case "create": {
+
                 break;
             }
         }
