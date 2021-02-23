@@ -8,7 +8,7 @@ public class ConsoleOutputWriter implements IOutputWriter {
 
     @Override
     public void Print(String text) {
-        System.out.print(Drive.prompt + text);
+        System.out.print(Drive.getPrompt()+ "> " + text);
     }
 
     @Override
