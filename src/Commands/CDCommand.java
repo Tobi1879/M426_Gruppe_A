@@ -20,10 +20,13 @@ public class CDCommand extends ShellCommand {
 
 
 
+        String prompt = Drive.getPrompt();
         switch (destination){
             case "..":
                 ;
             case "\\":
+                Drive.setCurrentDirecotry(Drive.getRootDirectory());
+                Drive.setPrompt(Drive.getCurrentDirecotry().getName() + "/");
                 ;
             default:
                 if (destination.contains(".txt")) {
@@ -36,6 +39,9 @@ public class CDCommand extends ShellCommand {
                             if (fileSystemItem.getName().equals(destination)) {
                                 isDirectory = true;
                                 Drive.setCurrentDirecotry((Directory) fileSystemItem);
+
+                                // Prompt
+                                Drive.setPrompt(prompt + Drive.getCurrentDirecotry().getName() + "/");
                             }
                         }
                     }
