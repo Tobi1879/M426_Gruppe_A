@@ -35,7 +35,7 @@ public class CDCommand extends ShellCommand {
                     for (FileSystemItem fileSystemItem : fileSystemItems) {
                         if (fileSystemItem.getParentDirectory() == Drive.getCurrentDirecotry()) {
                             // name überprüefe und wenner glich isch denn das directory als currentdirectory neh
-                            // isDirectory uf true setze, zum nocher überprüefe ob de Fehlermeldig musch usgeh
+                            // isDirectory uf true setze, zum nocher überprüefe ob de Fehlermeldig
                             if (fileSystemItem.getName().equals(destination)) {
                                 isDirectory = true;
                                 Drive.setCurrentDirecotry((Directory) fileSystemItem);
