@@ -131,8 +131,7 @@ public class SetColorCommand extends ShellCommand {
                         "0 = Schwarz\t4 = Rot\n" +
                         "1 = Blau\t5 = Violett\n" +
                         "2 = Grün\t6 = Gelb\n" +
-                        "3 = Cyan\t7 = Weiss\n" +
-                        "8 = Grau");
+                        "3 = Cyan\t7 = Weiss\n");
             }
         } else {
             iOutputWriter.PrintLine("\u001B[31mUngültige Eingabe\n\u001B[0m");

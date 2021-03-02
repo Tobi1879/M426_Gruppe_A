@@ -31,7 +31,7 @@ public class CDCommand extends ShellCommand {
 
                 Drive.setPrompt(prompt);
                 break;
-            case "\\":
+            case "/":
                 Drive.setCurrentDirecotry(Drive.getRootDirectory());
                 Drive.setPrompt(Drive.getCurrentDirecotry().getName() + "/");
                 break;
