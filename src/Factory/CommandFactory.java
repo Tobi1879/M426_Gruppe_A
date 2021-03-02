@@ -20,10 +20,11 @@ public class CommandFactory {
         commandList.add("ver");
         commandList.add("create");
         commandList.add("cd");
+        commandList.add("dir");
         return commandList;
     }
 
-    public ShellCommand CreateCommand(String command, List parameters) throws IOException {
+    public static ShellCommand CreateCommand(String command, List parameters) throws IOException {
         String commandLowerCase = command.toLowerCase();
         switch (commandLowerCase) {
             case "exit": {
@@ -52,6 +53,10 @@ public class CommandFactory {
                 CDCommand cdCommand = new CDCommand();
                 cdCommand.setParameters(parameters);
                 return cdCommand;
+            }
+            case "dir": {
+                DirCommand dirCommand = new DirCommand();
+                return dirCommand;
             }
             case "create": {
 

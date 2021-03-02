@@ -2,7 +2,10 @@ package Commands;
 
 import FileSystem.Directory;
 import FileSystem.Drive;
+import FileSystem.FileSystemItem;
 import Invoker.IOutputWriter;
+
+import java.util.List;
 
 public class MkDirCommand extends ShellCommand {
 
@@ -16,5 +19,8 @@ public class MkDirCommand extends ShellCommand {
         directory.setName(name);
         directory.setPath(path);
         directory.setParentDirectory(Drive.getCurrentDirecotry());
+        List<FileSystemItem> fileSystemItems = Drive.getFileSystemItems();
+        fileSystemItems.add(directory);
+        Drive.setFileSystemItems(fileSystemItems);
     }
 }
