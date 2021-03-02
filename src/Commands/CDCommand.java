@@ -18,27 +18,31 @@ public class CDCommand extends ShellCommand {
         Boolean isDirectory = false;
         List<FileSystemItem> fileSystemItems = Drive.getFileSystemItems();
 
+
+
         switch (destination){
             case "..":
                 ;
             case "\\":
                 ;
             default:
-                for (FileSystemItem fileSystemItem : fileSystemItems) {
-                    if (fileSystemItem.getParentDirectory() == Drive.getCurrentDirecotry()){
-                        // name überprüefe und wenner glich isch denn das directory als currentdirectory neh
-                        // isDirectory uf true setze, zum nocher überprüefe ob de Fehlermeldig musch usgeh
+                if (destination.contains(".txt")) {
+                    iOutputWriter.PrintLine("Parameter kein Directory!");
+                } else {
+                    for (FileSystemItem fileSystemItem : fileSystemItems) {
+                        if (fileSystemItem.getParentDirectory() == Drive.getCurrentDirecotry()) {
+                            // name überprüefe und wenner glich isch denn das directory als currentdirectory neh
+                            // isDirectory uf true setze, zum nocher überprüefe ob de Fehlermeldig musch usgeh
+                            if (fileSystemItem.getName().equals(destination)) {
+                                isDirectory = true;
+                                Drive.setCurrentDirecotry((Directory) fileSystemItem);
+                            }
+                        }
+                    }
+                    if (!isDirectory){
+                        iOutputWriter.PrintLine("Directory wurde nicht gefunden!");
                     }
                 }
-                ;
         }
-
-        Directory directory = new Directory();
-
-
-        Drive.setCurrentDirecotry(directory);
-
-
     }
-
 }
