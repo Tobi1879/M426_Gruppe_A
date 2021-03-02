@@ -22,7 +22,7 @@ public class MkDirCommand extends ShellCommand {
 
         for (FileSystemItem fileSystemItem : fileSystemItems) {
             if (fileSystemItem.getParentDirectory() == Drive.getCurrentDirecotry()){
-                if (fileSystemItem.getName() == name) {
+                if (fileSystemItem.getName().equals(name)) {
                     nameIsOk = false;
                 }
             }

@@ -1,0 +1,133 @@
+Index: src/Invoker/TestOutputWriter.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package Invoker;\r\n\r\nimport Invoker.IOutputWriter;\r\n\r\npublic class TestOutputWriter implements IOutputWriter {\r\n    String output = \"\";\r\n    @Override\r\n    public void Print(String text) {\r\n        output = text;\r\n    }\r\n\r\n    @Override\r\n    public void PrintLine(String text) {\r\n        output = text;\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/Invoker/TestOutputWriter.java b/src/Invoker/TestOutputWriter.java
+--- a/src/Invoker/TestOutputWriter.java	(revision 5555f313fc770519271767a81672d61f3259deb7)
++++ b/src/Invoker/TestOutputWriter.java	(date 1614077538502)
+@@ -3,6 +3,14 @@
+ import Invoker.IOutputWriter;
+ 
+ public class TestOutputWriter implements IOutputWriter {
++    public String getOutput() {
++        return output;
++    }
++
++    public void setOutput(String output) {
++        this.output = output;
++    }
++
+     String output = "";
+     @Override
+     public void Print(String text) {
+Index: src/Factory/CommandFactory.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package Factory;\r\n\r\nimport Commands.*;\r\nimport Invoker.ConsoleOutputWriter;\r\nimport Invoker.IOutputWriter;\r\n\r\nimport java.sql.Array;\r\nimport java.util.ArrayList;\r\nimport java.util.Collection;\r\nimport java.util.List;\r\n\r\npublic class CommandFactory {\r\n    public List GetCommands(){\r\n        List<String> commandList = new ArrayList();\r\n        commandList.add(\"cls\");\r\n        commandList.add(\"exit\");\r\n        commandList.add(\"mkdir\");\r\n        commandList.add(\"color\");\r\n        commandList.add(\"ver\");\r\n        return commandList;\r\n    }\r\n\r\n    public void CreateCommand(String command, List parameters){\r\n        IOutputWriter consoleOutputwriter = new ConsoleOutputWriter();\r\n        String commandLowerCase = command.toLowerCase();\r\n        switch(commandLowerCase){\r\n            case \"exit\": {\r\n                ExitCommand exitCommand = new ExitCommand();\r\n                exitCommand.Execute(consoleOutputwriter);\r\n                break;\r\n            }\r\n            case \"ver\": {\r\n                VerCommand verCommand = new VerCommand();\r\n                verCommand.Execute(consoleOutputwriter);\r\n                break;\r\n            }\r\n            case \"color\": {\r\n                SetColorCommand setColorCommand = new SetColorCommand();\r\n                setColorCommand.setParameters(parameters);\r\n                setColorCommand.Execute(consoleOutputwriter);\r\n                break;\r\n            }\r\n            case \"cls\": {\r\n                ClsCommand clsCommand = new ClsCommand();\r\n                clsCommand.Execute(consoleOutputwriter);\r\n                break;\r\n            }\r\n            case \"mkdir\": {\r\n                MkDirCommand mkDirCommand = new MkDirCommand();\r\n                mkDirCommand.setParameters(parameters);\r\n                mkDirCommand.Execute(consoleOutputwriter);\r\n                break;\r\n            }\r\n        }\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/Factory/CommandFactory.java b/src/Factory/CommandFactory.java
+--- a/src/Factory/CommandFactory.java	(revision 5555f313fc770519271767a81672d61f3259deb7)
++++ b/src/Factory/CommandFactory.java	(date 1614669044173)
+@@ -10,6 +10,16 @@
+ import java.util.List;
+ 
+ public class CommandFactory {
++    IOutputWriter outputWriter = new ConsoleOutputWriter();
++
++    public IOutputWriter getOutputWriter() {
++        return outputWriter;
++    }
++
++    public void setOutputWriter(IOutputWriter outputWriter) {
++        this.outputWriter = outputWriter;
++    }
++
+     public List GetCommands(){
+         List<String> commandList = new ArrayList();
+         commandList.add("cls");
+@@ -20,35 +30,41 @@
+         return commandList;
+     }
+ 
+-    public void CreateCommand(String command, List parameters){
+-        IOutputWriter consoleOutputwriter = new ConsoleOutputWriter();
++    public ShellCommand CreateCommand(String command, List parameters){
++        /*if (outputWriter == null){
++            outputWriter = new ConsoleOutputWriter();
++        }*/
++
++        /**
++         * Execute im Invoker
++         * */
+         String commandLowerCase = command.toLowerCase();
+         switch(commandLowerCase){
+             case "exit": {
+                 ExitCommand exitCommand = new ExitCommand();
+-                exitCommand.Execute(consoleOutputwriter);
++                return exitCommand;
+                 break;
+             }
+             case "ver": {
+                 VerCommand verCommand = new VerCommand();
+-                verCommand.Execute(consoleOutputwriter);
++                verCommand.Execute(outputWriter);
+                 break;
+             }
+             case "color": {
+                 SetColorCommand setColorCommand = new SetColorCommand();
+                 setColorCommand.setParameters(parameters);
+-                setColorCommand.Execute(consoleOutputwriter);
++                setColorCommand.Execute(outputWriter);
+                 break;
+             }
+             case "cls": {
+                 ClsCommand clsCommand = new ClsCommand();
+-                clsCommand.Execute(consoleOutputwriter);
++                clsCommand.Execute(outputWriter);
+                 break;
+             }
+             case "mkdir": {
+                 MkDirCommand mkDirCommand = new MkDirCommand();
+                 mkDirCommand.setParameters(parameters);
+-                mkDirCommand.Execute(consoleOutputwriter);
++                mkDirCommand.Execute(outputWriter);
+                 break;
+             }
+         }
+Index: src/Tests/VerCommandTest.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package Tests;\r\n\r\nimport Factory.CommandFactory;\r\n\r\nimport static org.junit.jupiter.api.Assertions.*;\r\n\r\nclass VerCommandTest {\r\n    CommandFactory commandFactory = new CommandFactory();\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/Tests/VerCommandTest.java b/src/Tests/VerCommandTest.java
+--- a/src/Tests/VerCommandTest.java	(revision 5555f313fc770519271767a81672d61f3259deb7)
++++ b/src/Tests/VerCommandTest.java	(date 1614079326032)
+@@ -1,9 +1,18 @@
+ package Tests;
+ 
+ import Factory.CommandFactory;
++import Invoker.IOutputWriter;
++import Invoker.TestOutputWriter;
++import org.junit.Test;
+ 
+ import static org.junit.jupiter.api.Assertions.*;
+ 
+-class VerCommandTest {
+-    CommandFactory commandFactory = new CommandFactory();
++public class VerCommandTest {
++    @Test
++    public void test1() {
++        CommandFactory commandFactory = new CommandFactory();
++        IOutputWriter testOutputWriter = new TestOutputWriter();
++        commandFactory.CreateCommand("ver", null, testOutputWriter);
++        assertEquals(((TestOutputWriter) testOutputWriter).getOutput(), "Windows 10 Version: 10.0\n");
++    }
+ }
+\ No newline at end of file

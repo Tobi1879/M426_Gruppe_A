@@ -1,0 +1,83 @@
+Index: src/FileSystem/Drive.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package FileSystem;\r\n\r\nimport java.util.List;\r\n\r\npublic class Drive implements IDrive {\r\n\r\n    public List<FileSystemItem> FileSystemItems;\r\n\r\n    @Override\r\n    public void setCurrentDirectory(Directory directory) {\r\n\r\n    }\r\n\r\n    @Override\r\n    public void restore() {\r\n\r\n    }\r\n\r\n    @Override\r\n    public void Save() {\r\n\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/FileSystem/Drive.java b/src/FileSystem/Drive.java
+--- a/src/FileSystem/Drive.java	(revision 942f1c2c80e5abe4337044f9290200770b5f5613)
++++ b/src/FileSystem/Drive.java	(date 1614070757177)
+@@ -3,12 +3,13 @@
+ import java.util.List;
+ 
+ public class Drive implements IDrive {
++    public Directory currentDirecotry;
+ 
+     public List<FileSystemItem> FileSystemItems;
+ 
+     @Override
+     public void setCurrentDirectory(Directory directory) {
+-
++        this.currentDirecotry = directory;
+     }
+ 
+     @Override
+Index: src/Commands/SetColorCommand.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package Commands;\r\n\r\nimport Invoker.IOutputWriter;\r\nimport com.sun.tools.jconsole.JConsoleContext;\r\n\r\nimport javax.swing.plaf.ColorChooserUI;\r\nimport java.util.logging.ConsoleHandler;\r\n\r\npublic class SetColorCommand extends ShellCommand {\r\n    public static final String ANSI_RESET = \"\\u001B[0m\";\r\n    public static final String ANSI_BLACK = \"\\u001B[30m\";\r\n    public static final String ANSI_RED = \"\\u001B[31m\";\r\n    public static final String ANSI_GREEN = \"\\u001B[32m\";\r\n    public static final String ANSI_YELLOW = \"\\u001B[33m\";\r\n    public static final String ANSI_BLUE = \"\\u001B[34m\";\r\n    public static final String ANSI_PURPLE = \"\\u001B[35m\";\r\n    public static final String ANSI_CYAN = \"\\u001B[36m\";\r\n    public static final String ANSI_WHITE = \"\\u001B[37m\";\r\n\r\n    public static final String ANSI_BLACK_BACKGROUND = \"\\u001B[40m\";\r\n    public static final String ANSI_RED_BACKGROUND = \"\\u001B[41m\";\r\n    public static final String ANSI_GREEN_BACKGROUND = \"\\u001B[42m\";\r\n    public static final String ANSI_YELLOW_BACKGROUND = \"\\u001B[43m\";\r\n    public static final String ANSI_BLUE_BACKGROUND = \"\\u001B[44m\";\r\n    public static final String ANSI_PURPLE_BACKGROUND = \"\\u001B[45m\";\r\n    public static final String ANSI_CYAN_BACKGROUND = \"\\u001B[46m\";\r\n    public static final String ANSI_WHITE_BACKGROUND = \"\\u001B[47m\";\r\n\r\n    public void Execute(IOutputWriter iOutputWriter) {\r\n        if (this.parameters != null) {\r\n            String parameters = this.parameters.get(0);\r\n            if (!parameters.equals(\"-help\")) {\r\n                String arrayParameters[] = parameters.split(\"\");\r\n                int backgroundColor;\r\n                int fontColor;\r\n                if (arrayParameters.length == 2) {\r\n                    try {\r\n                        backgroundColor = Integer.parseInt(arrayParameters[0]);\r\n                        fontColor = Integer.parseInt(arrayParameters[1]);\r\n                    } catch (Exception e) {\r\n                        iOutputWriter.PrintLine(\"Falscheingabe!\");\r\n                        return;\r\n                    }\r\n                    String ansiBackgroundColor = \"\";\r\n                    String ansiFontColor = \"\";\r\n                    switch (backgroundColor) {\r\n                        case 0: {\r\n                            ansiBackgroundColor = ANSI_BLACK_BACKGROUND;\r\n                            break;\r\n                        }\r\n                        case 1: {\r\n                            ansiBackgroundColor = ANSI_BLUE_BACKGROUND;\r\n                            break;\r\n                        }\r\n                        case 2: {\r\n                            ansiBackgroundColor = ANSI_GREEN_BACKGROUND;\r\n                            break;\r\n                        }\r\n                        case 3: {\r\n                            ansiBackgroundColor = ANSI_CYAN_BACKGROUND;\r\n                            break;\r\n                        }\r\n                        case 4: {\r\n                            ansiBackgroundColor = ANSI_RED_BACKGROUND;\r\n                            break;\r\n                        }\r\n                        case 5: {\r\n                            ansiBackgroundColor = ANSI_PURPLE_BACKGROUND;\r\n                            break;\r\n                        }\r\n                        case 6: {\r\n                            ansiBackgroundColor = ANSI_YELLOW_BACKGROUND;\r\n                            break;\r\n                        }\r\n                        case 7: {\r\n                            ansiBackgroundColor = ANSI_WHITE_BACKGROUND;\r\n                            break;\r\n                        }\r\n                        default: {\r\n                            iOutputWriter.PrintLine(\"Falscher Parameter!\");\r\n                            return;\r\n                        }\r\n                    }\r\n                    switch (fontColor) {\r\n                        case 0: {\r\n                            ansiFontColor = ANSI_BLACK;\r\n                            break;\r\n                        }\r\n                        case 1: {\r\n                            ansiFontColor = ANSI_BLUE;\r\n                            break;\r\n                        }\r\n                        case 2: {\r\n                            ansiFontColor = ANSI_GREEN;\r\n                            break;\r\n                        }\r\n                        case 3: {\r\n                            ansiFontColor = ANSI_CYAN;\r\n                            break;\r\n                        }\r\n                        case 4: {\r\n                            ansiFontColor = ANSI_RED;\r\n                            break;\r\n                        }\r\n                        case 5: {\r\n                            ansiFontColor = ANSI_PURPLE;\r\n                            break;\r\n                        }\r\n                        case 6: {\r\n                            ansiFontColor = ANSI_YELLOW;\r\n                            break;\r\n                        }\r\n                        case 7: {\r\n                            ansiFontColor = ANSI_WHITE;\r\n                            break;\r\n                        }\r\n                        default: {\r\n                            iOutputWriter.PrintLine(\"Falscher Parameter!\");\r\n                            return;\r\n                        }\r\n                    }\r\n                    System.out.print(ansiBackgroundColor + ansiFontColor + \"Test\");\r\n                }\r\n            } else {\r\n                iOutputWriter.PrintLine(\"Geben Sie wie folgt die Parameter ein\\n\" +\r\n                        \"color <Farbe Hintergrund><Farbe Text>\\n\" +\r\n                        \"z.B. color 12\\n\" +\r\n                        \"\\n\" +\r\n                        \"Wie folgt sind die Farben:\\n\" +\r\n                        \"0 = Schwarz\\t4 = Rot\\n\" +\r\n                        \"1 = Blau\\t5 = Violett\\n\" +\r\n                        \"2 = Grün\\t6 = Gelb\\n\" +\r\n                        \"3 = Cyan\\t7 = Weiss\\n\" +\r\n                        \"8 = Grau\");\r\n            }\r\n        } else {\r\n            iOutputWriter.PrintLine(\"Ungültige Eingabe!\");\r\n        }\r\n    }\r\n}\r\n\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/Commands/SetColorCommand.java b/src/Commands/SetColorCommand.java
+--- a/src/Commands/SetColorCommand.java	(revision 942f1c2c80e5abe4337044f9290200770b5f5613)
++++ b/src/Commands/SetColorCommand.java	(date 1614070106612)
+@@ -1,7 +1,6 @@
+ package Commands;
+ 
+ import Invoker.IOutputWriter;
+-import com.sun.tools.jconsole.JConsoleContext;
+ 
+ import javax.swing.plaf.ColorChooserUI;
+ import java.util.logging.ConsoleHandler;
+Index: src/Factory/CommandFactory.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package Factory;\r\n\r\nimport Commands.*;\r\nimport Invoker.ConsoleOutputWriter;\r\nimport Invoker.IOutputWriter;\r\n\r\nimport java.sql.Array;\r\nimport java.util.ArrayList;\r\nimport java.util.Collection;\r\nimport java.util.List;\r\n\r\npublic class CommandFactory {\r\n    public List GetCommands(){\r\n        List<String> commandList = new ArrayList();\r\n        commandList.add(\"cls\");\r\n        commandList.add(\"exit\");\r\n        commandList.add(\"mkdir\");\r\n        commandList.add(\"color\");\r\n        commandList.add(\"ver\");\r\n        return commandList;\r\n    }\r\n\r\n    public void CreateCommand(String command, List parameters){\r\n        IOutputWriter consoleOutputwriter = new ConsoleOutputWriter();\r\n        String commandLowerCase = command.toLowerCase();\r\n        switch(commandLowerCase){\r\n            case \"exit\": {\r\n                ExitCommand exitCommand = new ExitCommand();\r\n                exitCommand.Execute(consoleOutputwriter);\r\n            }\r\n            case \"ver\": {\r\n                VerCommand verCommand = new VerCommand();\r\n                verCommand.Execute(consoleOutputwriter);\r\n            }\r\n            case \"color\": {\r\n                SetColorCommand setColorCommand = new SetColorCommand();\r\n                setColorCommand.setParameters(parameters);\r\n                setColorCommand.Execute(consoleOutputwriter);\r\n            }\r\n            case \"cls\": {\r\n                ClsCommand clsCommand = new ClsCommand();\r\n                clsCommand.Execute(consoleOutputwriter);\r\n            }\r\n            case \"mkdir\": {\r\n                MkDirCommand mkDirCommand = new MkDirCommand();\r\n                mkDirCommand.setParameters(parameters);\r\n                mkDirCommand.Execute(consoleOutputwriter);\r\n            }\r\n        }\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/Factory/CommandFactory.java b/src/Factory/CommandFactory.java
+--- a/src/Factory/CommandFactory.java	(revision 942f1c2c80e5abe4337044f9290200770b5f5613)
++++ b/src/Factory/CommandFactory.java	(date 1614070298084)
+@@ -27,24 +27,29 @@
+             case "exit": {
+                 ExitCommand exitCommand = new ExitCommand();
+                 exitCommand.Execute(consoleOutputwriter);
++                break;
+             }
+             case "ver": {
+                 VerCommand verCommand = new VerCommand();
+                 verCommand.Execute(consoleOutputwriter);
++                break;
+             }
+             case "color": {
+                 SetColorCommand setColorCommand = new SetColorCommand();
+                 setColorCommand.setParameters(parameters);
+                 setColorCommand.Execute(consoleOutputwriter);
++                break;
+             }
+             case "cls": {
+                 ClsCommand clsCommand = new ClsCommand();
+                 clsCommand.Execute(consoleOutputwriter);
++                break;
+             }
+             case "mkdir": {
+                 MkDirCommand mkDirCommand = new MkDirCommand();
+                 mkDirCommand.setParameters(parameters);
+                 mkDirCommand.Execute(consoleOutputwriter);
++                break;
+             }
+         }
+     }

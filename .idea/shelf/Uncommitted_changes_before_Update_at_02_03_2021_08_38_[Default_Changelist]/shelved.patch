@@ -1,0 +1,85 @@
+Index: src/Factory/CommandFactory.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package Factory;\r\n\r\nimport Commands.*;\r\nimport Invoker.ConsoleOutputWriter;\r\nimport Invoker.IOutputWriter;\r\n\r\nimport java.io.IOException;\r\nimport java.sql.Array;\r\nimport java.util.ArrayList;\r\nimport java.util.Collection;\r\nimport java.util.List;\r\n\r\npublic class CommandFactory {\r\n    public List GetCommands() {\r\n        List<String> commandList = new ArrayList();\r\n        commandList.add(\"cls\");\r\n        commandList.add(\"exit\");\r\n        commandList.add(\"mkdir\");\r\n        commandList.add(\"color\");\r\n        commandList.add(\"ver\");\r\n        commandList.add(\"create\");\r\n        commandList.add(\"cd\");\r\n        return commandList;\r\n    }\r\n\r\n    public ShellCommand CreateCommand(String command, List parameters) throws IOException {\r\n        String commandLowerCase = command.toLowerCase();\r\n        switch (commandLowerCase) {\r\n            case \"exit\": {\r\n                ExitCommand exitCommand = new ExitCommand();\r\n                return exitCommand;\r\n            }\r\n            case \"ver\": {\r\n                VerCommand verCommand = new VerCommand();\r\n                return verCommand;\r\n            }\r\n            case \"color\": {\r\n                SetColorCommand setColorCommand = new SetColorCommand();\r\n                setColorCommand.setParameters(parameters);\r\n                return setColorCommand;\r\n            }\r\n            case \"cls\": {\r\n                ClsCommand clsCommand = new ClsCommand();\r\n                return clsCommand;\r\n            }\r\n            case \"mkdir\": {\r\n                MkDirCommand mkDirCommand = new MkDirCommand();\r\n                mkDirCommand.setParameters(parameters);\r\n                return mkDirCommand;\r\n            }\r\n            case \"cd\": {\r\n                CDCommand cdCommand = new CDCommand();\r\n                cdCommand.setParameters(parameters);\r\n                return cdCommand;\r\n            }\r\n            case \"create\": {\r\n\r\n                break;\r\n            }\r\n        }\r\n        return null;\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/Factory/CommandFactory.java b/src/Factory/CommandFactory.java
+--- a/src/Factory/CommandFactory.java	(revision a6d084dd99c9d8bffc8780af414c56714972dc64)
++++ b/src/Factory/CommandFactory.java	(date 1614669722069)
+@@ -11,7 +11,7 @@
+ import java.util.List;
+ 
+ public class CommandFactory {
+-    public List GetCommands() {
++    public static List GetCommands() {
+         List<String> commandList = new ArrayList();
+         commandList.add("cls");
+         commandList.add("exit");
+@@ -23,7 +23,7 @@
+         return commandList;
+     }
+ 
+-    public ShellCommand CreateCommand(String command, List parameters) throws IOException {
++    public static ShellCommand CreateCommand(String command, List parameters) throws IOException {
+         String commandLowerCase = command.toLowerCase();
+         switch (commandLowerCase) {
+             case "exit": {
+Index: src/Tests/VerCommandTest.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package Tests;\r\n\r\nimport Commands.ShellCommand;\r\nimport Factory.CommandFactory;\r\nimport Invoker.IOutputWriter;\r\nimport Invoker.TestOutputWriter;\r\nimport org.junit.Test;\r\n\r\nimport java.io.IOException;\r\n\r\nimport static org.junit.jupiter.api.Assertions.*;\r\n\r\npublic class VerCommandTest {\r\n    @Test\r\n    public void test1() throws IOException {\r\n        CommandFactory commandFactory = new CommandFactory();\r\n        IOutputWriter testOutputWriter = new TestOutputWriter();\r\n        ShellCommand shellCommand = commandFactory.CreateCommand(\"ver\", null);\r\n        shellCommand.Execute(testOutputWriter);\r\n        assertEquals(((TestOutputWriter) testOutputWriter).getOutput(), \"Windows 10 Version: 10.0\\n\");\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/Tests/VerCommandTest.java b/src/Tests/VerCommandTest.java
+--- a/src/Tests/VerCommandTest.java	(revision a6d084dd99c9d8bffc8780af414c56714972dc64)
++++ b/src/Tests/VerCommandTest.java	(date 1614670052746)
+@@ -12,10 +12,17 @@
+ 
+ public class VerCommandTest {
+     @Test
+-    public void test1() throws IOException {
+-        CommandFactory commandFactory = new CommandFactory();
++    public void testStandardInput() throws IOException {
+         IOutputWriter testOutputWriter = new TestOutputWriter();
+-        ShellCommand shellCommand = commandFactory.CreateCommand("ver", null);
++        ShellCommand shellCommand = CommandFactory.CreateCommand("ver", null);
++        shellCommand.Execute(testOutputWriter);
++        assertEquals(((TestOutputWriter) testOutputWriter).getOutput(), "Windows 10 Version: 10.0\n");
++    }
++
++    @Test
++    public void testInputWithUpperCases() throws IOException {
++        IOutputWriter testOutputWriter = new TestOutputWriter();
++        ShellCommand shellCommand = CommandFactory.CreateCommand("vEr", null);
+         shellCommand.Execute(testOutputWriter);
+         assertEquals(((TestOutputWriter) testOutputWriter).getOutput(), "Windows 10 Version: 10.0\n");
+     }
+Index: src/Invoker/Invoker.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package Invoker;\r\n\r\nimport Commands.ShellCommand;\r\nimport Factory.CommandFactory;\r\n\r\nimport java.io.IOException;\r\nimport java.util.List;\r\n\r\npublic class Invoker {\r\n\r\n    public void ExecuteCommand(String command) throws IOException {\r\n        IOutputWriter consoleOutputWriter = new ConsoleOutputWriter();\r\n        Parser parser = new Parser();\r\n        String [] arrayOfParameters = command.split(\" \");\r\n        Boolean isCommand = parser.ParseCommand(arrayOfParameters[0]);\r\n        if (isCommand == true && arrayOfParameters.length > 1){\r\n            List<String> parameters = parser.ParseCommandParameters(command);\r\n            if (parameters == null){\r\n                //consoleOutputWriter.PrintLine(\"Falscheingabe!\");\r\n                consoleOutputWriter.PrintLine(\"\\u001B[31mUngültige Eingabe\\n\\u001B[0m\");\r\n            } else {\r\n                CommandFactory commandFactory = new CommandFactory();\r\n                ShellCommand shellCommand = commandFactory.CreateCommand(arrayOfParameters[0], parameters);\r\n                shellCommand.Execute(consoleOutputWriter);\r\n            }\r\n        } else if (isCommand == true) {\r\n            CommandFactory commandFactory = new CommandFactory();\r\n            ShellCommand shellCommand = commandFactory.CreateCommand(arrayOfParameters[0], null);\r\n            shellCommand.Execute(consoleOutputWriter);\r\n        }\r\n        else {\r\n            consoleOutputWriter.PrintLine(\"\\u001B[31mUngültige Eingabe\\n\\u001B[0m\");\r\n        }\r\n    }\r\n\r\n    public void Invoker(IOutputWriter iOutputWriter){\r\n\r\n    }\r\n\r\n    public void AddCommand(ShellCommand shellCommand){\r\n\r\n    }\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/Invoker/Invoker.java b/src/Invoker/Invoker.java
+--- a/src/Invoker/Invoker.java	(revision a6d084dd99c9d8bffc8780af414c56714972dc64)
++++ b/src/Invoker/Invoker.java	(date 1614669722075)
+@@ -19,13 +19,11 @@
+                 //consoleOutputWriter.PrintLine("Falscheingabe!");
+                 consoleOutputWriter.PrintLine("\u001B[31mUngültige Eingabe\n\u001B[0m");
+             } else {
+-                CommandFactory commandFactory = new CommandFactory();
+-                ShellCommand shellCommand = commandFactory.CreateCommand(arrayOfParameters[0], parameters);
++                ShellCommand shellCommand = CommandFactory.CreateCommand(arrayOfParameters[0], parameters);
+                 shellCommand.Execute(consoleOutputWriter);
+             }
+         } else if (isCommand == true) {
+-            CommandFactory commandFactory = new CommandFactory();
+-            ShellCommand shellCommand = commandFactory.CreateCommand(arrayOfParameters[0], null);
++            ShellCommand shellCommand = CommandFactory.CreateCommand(arrayOfParameters[0], null);
+             shellCommand.Execute(consoleOutputWriter);
+         }
+         else {

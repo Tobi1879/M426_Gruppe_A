@@ -1,0 +1,18 @@
+Index: src/FileSystem/Drive.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package FileSystem;\r\n\r\npublic abstract class Drive {\r\n    public static String name = null;\r\n    public static String label = null;\r\n    public static int size = 0;\r\n    public static Directory rootDirectory = null;\r\n    public static Directory currentDirecotry = null;\r\n    public static String prompt = null;\r\n\r\n    public static void setCurrentDirectory(Directory directory) {\r\n\r\n    }\r\n\r\n    public static void restore() {\r\n\r\n    }\r\n\r\n    public static void Save() {\r\n\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/FileSystem/Drive.java b/src/FileSystem/Drive.java
+--- a/src/FileSystem/Drive.java	(revision c08baaeccc3d67ca478a497f0cefb5c8d576b3c9)
++++ b/src/FileSystem/Drive.java	(date 1614074205897)
+@@ -1,6 +1,6 @@
+ package FileSystem;
+ 
+-public abstract class Drive {
++public class Drive {
+     public static String name = null;
+     public static String label = null;
+     public static int size = 0;
