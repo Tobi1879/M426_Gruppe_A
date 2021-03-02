@@ -7,4 +7,5 @@ public class ExitCommand  extends ShellCommand {
     public void Execute(IOutputWriter iOutputWriter){
         System.exit(0);
     }
+
 }

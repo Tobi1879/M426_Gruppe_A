@@ -2,10 +2,7 @@ package Commands;
 
 import Invoker.IOutputWriter;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.*;
 import java.util.Scanner;
 
 public class CreateCommand extends ShellCommand {
@@ -14,35 +11,26 @@ public class CreateCommand extends ShellCommand {
     @Override
     public void Execute(IOutputWriter iOutputWriter) throws IOException {
 
-        /**
-         * This class shows how to create a File in Java
-         * @param args
-         * @throws IOException
-         */
-
-            String fileSeparator = System.getProperty("file.separator");
-
-            //absolute file name with path
-            String absoluteFilePath = fileSeparator+"Users"+fileSeparator+"pankaj"+fileSeparator+"file.txt";
-            File file = new File(absoluteFilePath);
-            if(file.createNewFile()){
-                System.out.println(absoluteFilePath+" File Created");
-            }else System.out.println("File "+absoluteFilePath+" already exists");
-
-            //file name only
-            file = new File("file.txt");
-            if(file.createNewFile()){
-                System.out.println("file.txt File Created in Project root directory");
-            }else System.out.println("File file.txt already exists in the project root directory");
-
-            //relative path
-            String relativePath = "tmp"+fileSeparator+"file.txt";
-            file = new File(relativePath);
-            if(file.createNewFile()){
-                System.out.println(relativePath+" File Created in Project root directory");
-            }else System.out.println("File "+relativePath+" already exists in the project root directory");
-
+        try
+        {
+            Scanner sc=new Scanner(System.in);         //object of Scanner class
+            System.out.print("Geben Sie den Filenamen ein: ");
+            String name=sc.nextLine();              //Variable speichert den Filenamen
+            FileOutputStream fos=new FileOutputStream(name, true);  // true for append mode
+            System.out.print("Geben Sie etwas für das File ein: ");
+            String str=sc.nextLine()+"\n";      //str speichert die Eingaben der File
+            byte[] b= str.getBytes();       //converts string into bytes
+            fos.write(b);           //writes bytes into file
+            fos.close();            //close the file
+            System.out.println("file saved.");
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
     }
+
 }
+
 
 

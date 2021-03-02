@@ -3,11 +3,12 @@ package Invoker;
 import Commands.ShellCommand;
 import Factory.CommandFactory;
 
+import java.io.IOException;
 import java.util.List;
 
 public class Invoker {
 
-    public void ExecuteCommand(String command){
+    public void ExecuteCommand(String command) throws IOException {
         IOutputWriter consoleOutputWriter = new ConsoleOutputWriter();
         Parser parser = new Parser();
         String [] arrayOfParameters = command.split(" ");

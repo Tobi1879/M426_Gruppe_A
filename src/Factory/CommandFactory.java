@@ -4,12 +4,15 @@ import Commands.*;
 import Invoker.ConsoleOutputWriter;
 import Invoker.IOutputWriter;
 
+import java.io.IOException;
 import java.sql.Array;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
 public class CommandFactory {
+    private Object IOutputWriter;
+
     public List GetCommands() {
         List<String> commandList = new ArrayList();
         commandList.add("cls");
@@ -21,7 +24,7 @@ public class CommandFactory {
         return commandList;
     }
 
-    public void CreateCommand(String command, List parameters) {
+    public void CreateCommand(String command, List parameters) throws IOException {
         IOutputWriter consoleOutputwriter = new ConsoleOutputWriter();
         String commandLowerCase = command.toLowerCase();
         switch (commandLowerCase) {
@@ -53,7 +56,8 @@ public class CommandFactory {
                 break;
             }
             case "create": {
-
+                CreateCommand createCommand = new CreateCommand();
+                createCommand.Execute(( Invoker.IOutputWriter ) parameters);
                 break;
             }
         }

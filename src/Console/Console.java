@@ -6,6 +6,7 @@ import Invoker.Parser;
 import Invoker.Invoker;
 import Invoker.ConsoleOutputWriter;
 
+import java.io.IOException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -39,7 +40,7 @@ public class Console {
         try {
             String input = scanner.nextLine();
             invoker.ExecuteCommand(input);
-        } catch (InputMismatchException e){
+        } catch (InputMismatchException | IOException e){
             scanner.nextLine();
             System.out.println("Ungültige Eingabe!\n");
 
