@@ -23,47 +23,41 @@ public class CommandFactory {
         return commandList;
     }
 
-    public void CreateCommand(String command, List parameters) throws IOException {
-        IOutputWriter consoleOutputwriter = new ConsoleOutputWriter();
+    public ShellCommand CreateCommand(String command, List parameters) throws IOException {
         String commandLowerCase = command.toLowerCase();
         switch (commandLowerCase) {
             case "exit": {
                 ExitCommand exitCommand = new ExitCommand();
-                exitCommand.Execute(consoleOutputwriter);
-                break;
+                return exitCommand;
             }
             case "ver": {
                 VerCommand verCommand = new VerCommand();
-                verCommand.Execute(consoleOutputwriter);
-                break;
+                return verCommand;
             }
             case "color": {
                 SetColorCommand setColorCommand = new SetColorCommand();
                 setColorCommand.setParameters(parameters);
-                setColorCommand.Execute(consoleOutputwriter);
-                break;
+                return setColorCommand;
             }
             case "cls": {
                 ClsCommand clsCommand = new ClsCommand();
-                clsCommand.Execute(consoleOutputwriter);
-                break;
+                return clsCommand;
             }
             case "mkdir": {
                 MkDirCommand mkDirCommand = new MkDirCommand();
                 mkDirCommand.setParameters(parameters);
-                mkDirCommand.Execute(consoleOutputwriter);
-                break;
+                return mkDirCommand;
             }
             case "cd": {
                 CDCommand cdCommand = new CDCommand();
                 cdCommand.setParameters(parameters);
-                cdCommand.Execute(consoleOutputwriter);
-                break;
+                return cdCommand;
             }
             case "create": {
 
                 break;
             }
         }
+        return null;
     }
 }
