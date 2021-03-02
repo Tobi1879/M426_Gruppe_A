@@ -4,6 +4,7 @@ import Commands.*;
 import Invoker.ConsoleOutputWriter;
 import Invoker.IOutputWriter;
 
+import java.io.IOException;
 import java.sql.Array;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -18,10 +19,11 @@ public class CommandFactory {
         commandList.add("color");
         commandList.add("ver");
         commandList.add("create");
+        commandList.add("cd");
         return commandList;
     }
 
-    public void CreateCommand(String command, List parameters) {
+    public void CreateCommand(String command, List parameters) throws IOException {
         IOutputWriter consoleOutputwriter = new ConsoleOutputWriter();
         String commandLowerCase = command.toLowerCase();
         switch (commandLowerCase) {
@@ -50,6 +52,12 @@ public class CommandFactory {
                 MkDirCommand mkDirCommand = new MkDirCommand();
                 mkDirCommand.setParameters(parameters);
                 mkDirCommand.Execute(consoleOutputwriter);
+                break;
+            }
+            case "cd": {
+                CDCommand cdCommand = new CDCommand();
+                cdCommand.setParameters(parameters);
+                cdCommand.Execute(consoleOutputwriter);
                 break;
             }
             case "create": {

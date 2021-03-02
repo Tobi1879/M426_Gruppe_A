@@ -36,6 +36,18 @@ public class Parser {
                     new ConsoleOutputWriter().PrintLine("\u001B[31mUngültige Eingabe\n\u001B[0m");
                 }
             }
+            case "cd":{
+                String destinationParameter = "";
+                if (!(arrayOfParameters.length > 2)) {
+                    destinationParameter = arrayOfParameters[1];
+                    List<String> parameterList = new ArrayList<>();
+                    parameterList.add(destinationParameter);
+                    return parameterList;
+                } else {
+                    //new ConsoleOutputWriter().PrintLine("Falscheingabe!");
+                    new ConsoleOutputWriter().PrintLine("\u001B[31mUngültige Eingabe\n\u001B[0m");
+                }
+            }
         }
         return null;
     }
