@@ -12,10 +12,17 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class VerCommandTest {
     @Test
-    public void test1() throws IOException {
-        CommandFactory commandFactory = new CommandFactory();
+    public void testStandardInput() throws IOException {
         IOutputWriter testOutputWriter = new TestOutputWriter();
-        ShellCommand shellCommand = commandFactory.CreateCommand("ver", null);
+        ShellCommand shellCommand = CommandFactory.CreateCommand("ver", null);
+        shellCommand.Execute(testOutputWriter);
+        assertEquals(((TestOutputWriter) testOutputWriter).getOutput(), "Windows 10 Version: 10.0\n");
+    }
+
+    @Test
+    public void testInputWithUpperCases() throws IOException {
+        IOutputWriter testOutputWriter = new TestOutputWriter();
+        ShellCommand shellCommand = CommandFactory.CreateCommand("vEr", null);
         shellCommand.Execute(testOutputWriter);
         assertEquals(((TestOutputWriter) testOutputWriter).getOutput(), "Windows 10 Version: 10.0\n");
     }

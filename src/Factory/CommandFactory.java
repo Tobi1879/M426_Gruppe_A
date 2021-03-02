@@ -11,8 +11,6 @@ import java.util.Collection;
 import java.util.List;
 
 public class CommandFactory {
-    private Object IOutputWriter;
-
     public List GetCommands() {
         List<String> commandList = new ArrayList();
         commandList.add("cls");
@@ -21,45 +19,50 @@ public class CommandFactory {
         commandList.add("color");
         commandList.add("ver");
         commandList.add("create");
+        commandList.add("cd");
+        commandList.add("dir");
         return commandList;
     }
 
-    public void CreateCommand(String command, List parameters) throws IOException {
-        IOutputWriter consoleOutputwriter = new ConsoleOutputWriter();
+    public static ShellCommand CreateCommand(String command, List parameters) throws IOException {
         String commandLowerCase = command.toLowerCase();
         switch (commandLowerCase) {
             case "exit": {
                 ExitCommand exitCommand = new ExitCommand();
-                exitCommand.Execute(consoleOutputwriter);
-                break;
+                return exitCommand;
             }
             case "ver": {
                 VerCommand verCommand = new VerCommand();
-                verCommand.Execute(consoleOutputwriter);
-                break;
+                return verCommand;
             }
             case "color": {
                 SetColorCommand setColorCommand = new SetColorCommand();
                 setColorCommand.setParameters(parameters);
-                setColorCommand.Execute(consoleOutputwriter);
-                break;
+                return setColorCommand;
             }
             case "cls": {
                 ClsCommand clsCommand = new ClsCommand();
-                clsCommand.Execute(consoleOutputwriter);
-                break;
+                return clsCommand;
             }
             case "mkdir": {
                 MkDirCommand mkDirCommand = new MkDirCommand();
                 mkDirCommand.setParameters(parameters);
-                mkDirCommand.Execute(consoleOutputwriter);
-                break;
+                return mkDirCommand;
+            }
+            case "cd": {
+                CDCommand cdCommand = new CDCommand();
+                cdCommand.setParameters(parameters);
+                return cdCommand;
+            }
+            case "dir": {
+                DirCommand dirCommand = new DirCommand();
+                return dirCommand;
             }
             case "create": {
-                CreateCommand createCommand = new CreateCommand();
-                createCommand.Execute(( Invoker.IOutputWriter ) parameters);
+
                 break;
             }
         }
+        return null;
     }
 }

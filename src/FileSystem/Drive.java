@@ -1,5 +1,8 @@
 package FileSystem;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Drive {
     private static String name = null;
     private static String label = null;
@@ -7,6 +10,17 @@ public class Drive {
     private static Directory rootDirectory = null;
     private static Directory currentDirecotry = null;
     private static String prompt = null;
+
+    // Directorys and Files
+    private static List<FileSystemItem> FileSystemItems = new ArrayList<>();
+
+    public static List<FileSystemItem> getFileSystemItems() {
+        return FileSystemItems;
+    }
+
+    public static void setFileSystemItems(List<FileSystemItem> fileSystemItems) {
+        FileSystemItems = fileSystemItems;
+    }
 
     public static String getName() {
         return name;

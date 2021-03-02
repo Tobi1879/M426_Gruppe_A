@@ -17,15 +17,15 @@ public class CreateCommand extends ShellCommand {
         try
         {
             Scanner sc=new Scanner(System.in);         //object of Scanner class
-            System.out.print("Geben Sie den Filenamen ein: ");
+            iOutputWriter.Print("Geben Sie den Filenamen ein: ");
             String name=sc.nextLine();              //Variable speichert den Filenamen
             FileOutputStream fos=new FileOutputStream(name, true);  // true for append mode
-            System.out.print("Geben Sie etwas für das File ein: ");
+            iOutputWriter.Print("Geben Sie etwas für das File ein: ");
             String str=sc.nextLine()+"\n";      //str speichert die Eingaben der File
             byte[] b= str.getBytes();       //converts string into bytes
             fos.write(b);           //writes bytes into file
             fos.close();            //close the file
-            System.out.println("file saved.");
+            iOutputWriter.Print("file saved.");
         }
         catch(Exception e)
         {
