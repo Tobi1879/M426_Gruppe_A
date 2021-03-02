@@ -3,11 +3,12 @@ package Invoker;
 import Commands.ShellCommand;
 import Factory.CommandFactory;
 
+import java.io.IOException;
 import java.util.List;
 
 public class Invoker {
 
-    public void ExecuteCommand(String command){
+    public void ExecuteCommand(String command) throws IOException {
         IOutputWriter consoleOutputWriter = new ConsoleOutputWriter();
         Parser parser = new Parser();
         String [] arrayOfParameters = command.split(" ");
@@ -19,11 +20,13 @@ public class Invoker {
                 consoleOutputWriter.PrintLine("\u001B[31mUngültige Eingabe\n\u001B[0m");
             } else {
                 CommandFactory commandFactory = new CommandFactory();
-                commandFactory.CreateCommand(arrayOfParameters[0], parameters);
+                ShellCommand shellCommand = commandFactory.CreateCommand(arrayOfParameters[0], parameters);
+                shellCommand.Execute(consoleOutputWriter);
             }
         } else if (isCommand == true) {
             CommandFactory commandFactory = new CommandFactory();
-            commandFactory.CreateCommand(arrayOfParameters[0], null);
+            ShellCommand shellCommand = commandFactory.CreateCommand(arrayOfParameters[0], null);
+            shellCommand.Execute(consoleOutputWriter);
         }
         else {
             consoleOutputWriter.PrintLine("\u001B[31mUngültige Eingabe\n\u001B[0m");
