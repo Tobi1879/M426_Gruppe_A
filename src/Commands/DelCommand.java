@@ -16,21 +16,24 @@ public class DelCommand extends ShellCommand{
 
         Boolean isFile = false;
 
+        FileSystemItem fileSystemItemToDelete = null;
+
         List<FileSystemItem> fileSystemItems = Drive.getFileSystemItems();
         for (FileSystemItem fileSystemItem : fileSystemItems) {
             if (fileSystemItem.getParentDirectory() == Drive.getCurrentDirecotry()){
-                if (fileSystemItem.getName() == selectedFile) {
+                if (fileSystemItem.getName().contains(selectedFile)) {
                     isFile = true;
-                    fileSystemItems.remove(fileSystemItem);
+                    fileSystemItemToDelete = fileSystemItem;
                 }
             }
         }
 
         if(isFile){
+            fileSystemItems.remove(fileSystemItemToDelete);
             Drive.setFileSystemItems(fileSystemItems);
         }
         else{
-            iOutputWriter.PrintLine("File does not exist.");
+            iOutputWriter.PrintLine("File existiert nicht!");
         }
 
     }

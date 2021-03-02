@@ -26,27 +26,36 @@ public class Parser {
             }
             case "mkdir":{
                 String nameParameter = "";
-                if (!(arrayOfParameters.length > 2)) {
-                    nameParameter = arrayOfParameters[1];
-                    List<String> parameterList = new ArrayList<>();
-                    parameterList.add(nameParameter);
-                    return parameterList;
-                } else {
-                    //new ConsoleOutputWriter().PrintLine("Falscheingabe!");
-                    new ConsoleOutputWriter().PrintLine("\u001B[31mUngültige Eingabe\n\u001B[0m");
-                }
+
+                nameParameter = arrayOfParameters[1];
+                List<String> parameterList = new ArrayList<>();
+                parameterList.add(nameParameter);
+                return parameterList;
             }
             case "cd":{
                 String destinationParameter = "";
-                if (!(arrayOfParameters.length > 2)) {
                     destinationParameter = arrayOfParameters[1];
                     List<String> parameterList = new ArrayList<>();
                     parameterList.add(destinationParameter);
                     return parameterList;
-                } else {
-                    //new ConsoleOutputWriter().PrintLine("Falscheingabe!");
-                    new ConsoleOutputWriter().PrintLine("\u001B[31mUngültige Eingabe\n\u001B[0m");
-                }
+
+            }
+            case "create":{
+                String name = "";
+                String content = "";
+                name = arrayOfParameters[1];
+                content = arrayOfParameters[2];
+                List<String> parameterList = new ArrayList<>();
+                parameterList.add(name);
+                parameterList.add(content);
+                return parameterList;
+            }
+            case "del":{
+                String name = "";
+                name = arrayOfParameters[1];
+                List<String> parameterList = new ArrayList<>();
+                parameterList.add(name);
+                return parameterList;
             }
         }
         return null;

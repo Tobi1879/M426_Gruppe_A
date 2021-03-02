@@ -23,12 +23,18 @@ public class CDCommand extends ShellCommand {
         String prompt = Drive.getPrompt();
         switch (destination){
             case "..":
-                Drive.setCurrentDirecotry(FileSystemItem.getParentDirectory());
-                Drive.setPrompt(Drive.getCurrentDirecotry().getName() + "/");;
+                int lengthToRemove = Drive.getCurrentDirecotry().getName().length() + 1;
+                Drive.setCurrentDirecotry(Drive.getCurrentDirecotry().getParentDirectory());
+
+                prompt = Drive.getPrompt();
+                prompt = prompt.substring(0, prompt.length()-lengthToRemove);
+
+                Drive.setPrompt(prompt);
+                break;
             case "\\":
                 Drive.setCurrentDirecotry(Drive.getRootDirectory());
                 Drive.setPrompt(Drive.getCurrentDirecotry().getName() + "/");
-                ;
+                break;
             default:
                 if (destination.contains(".txt")) {
                     iOutputWriter.PrintLine("Parameter kein Directory!");

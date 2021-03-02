@@ -21,6 +21,7 @@ public class CommandFactory {
         commandList.add("create");
         commandList.add("cd");
         commandList.add("dir");
+        commandList.add("del");
         return commandList;
     }
 
@@ -59,8 +60,14 @@ public class CommandFactory {
                 return dirCommand;
             }
             case "create": {
-
-                break;
+                CreateCommand createCommand = new CreateCommand();
+                createCommand.setParameters(parameters);
+                return createCommand;
+            }
+            case "del": {
+                DelCommand delCommand = new DelCommand();
+                delCommand.setParameters(parameters);
+                return delCommand;
             }
         }
         return null;
