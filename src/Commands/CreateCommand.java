@@ -1,5 +1,6 @@
 package Commands;
 
+import FileSystem.File;
 import Invoker.IOutputWriter;
 
 import java.io.*;
@@ -10,6 +11,8 @@ public class CreateCommand extends ShellCommand {
 
     @Override
     public void Execute(IOutputWriter iOutputWriter) throws IOException {
+
+        File file = new File();
 
         try
         {
